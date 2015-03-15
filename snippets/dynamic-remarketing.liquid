@@ -1,0 +1,198 @@
+<!-- Google Code for Remarketing Tag -->
+<!--
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+-->
+
+<script>
+if (!Array.prototype.last){
+    Array.prototype.last = function(){
+        return this[this.length - 1];
+    };
+};
+</script>
+
+ 
+{% if template == "index" %}
+<script type="text/javascript">
+var google_tag_params = {
+  ecomm_prodid:'',
+  ecomm_pagetype:"home",
+  ecomm_totalvalue:''
+};
+</script>
+{% elsif template == "collection" %}
+<script type="text/javascript">
+var google_tag_params = {
+  ecomm_prodid:'',
+  ecomm_pagetype:"category",
+  ecomm_totalvalue:''
+};
+</script>
+{% elsif template == "product" %}
+<script type="text/javascript">
+var google_tag_params = {
+  ecomm_prodid:'{{ product.metafields.google.gmc_id | split: ',' | last }}',
+  ecomm_pagetype:"product",
+  ecomm_totalvalue:"{{ product.price | money_without_currency }}"
+};
+
+function _customTrack() {
+  if(window.ShopifyAnalytics.lib && window.ShopifyAnalytics.lib.track) {
+    window.ShopifyAnalytics.lib.track(
+      "Viewed Product Details",
+      {
+        "id":'{{ product.metafields.google.gmc_id | split: ',' | last }}',
+        "name":"{{ product.title }}",
+        "price":"{{ product.price | money_without_currency }}",
+        "currency":"USD",
+        "nonInteraction":true
+      }
+    );
+    
+  } else {
+    setTimeout(function(){ _customTrack(); },1000)
+  }
+}
+
+_customTrack()
+
+
+</script>
+{% elsif template == "cart" %}
+<script type="text/javascript">
+var google_tag_params = {
+  {% if cart.items.size > 1 %}
+    ecomm_prodid: [{% for item in cart.items %}'{{ item.product.metafields.google.gmc_id | split: ',' | last}}'{% if forloop.last != true %},{% endif %}{% endfor %}],
+  {% elsif cart.items.size == 1 %}
+    ecomm_prodid: '{{ cart.items.last.product.metafields.google.gmc_id | split: ',' | last }}',
+  {% else %}
+  	ecomm_prodid: '',
+  {% endif %}
+  ecomm_pagetype:"cart",
+  ecomm_totalvalue:"{{ cart.total_price | money_without_currency }}"  
+};
+</script>
+{% elsif template == "search" %}
+<script type="text/javascript">
+var google_tag_params = {
+  ecomm_prodid:'',
+  ecomm_pagetype:"searchresults",
+  ecomm_totalvalue:''
+};
+</script>
+{% else %}
+<script type="text/javascript">
+  var google_tag_params = {
+  ecomm_prodid: '',
+  ecomm_pagetype: 'other',
+  ecomm_totalvalue: ''
+};  
+</script>
+{% endif %}
+
+
+
+<script type="text/javascript">
+/* <![CDATA[ */
+window.google_conversion_id = 968589656;
+window.google_custom_params = window.google_tag_params;
+setInterval(function(){
+  window.google_custom_params = window.google_tag_params;
+},1)
+window.google_remarketing_only = true;
+
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/968589656/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+
+
+
+
+
+
+{% if template == "cart" %}
+  <!-- Facebook Conversion Code for Country Shore - Adds to Cart -->
+  <script>(function() {
+    var _fbq = window._fbq || (window._fbq = []);
+    if (!_fbq.loaded) {
+      var fbds = document.createElement('script');
+      fbds.async = true;
+      fbds.src = '//connect.facebook.net/en_US/fbds.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(fbds, s);
+      _fbq.loaded = true;
+    }
+  })();
+  window._fbq = window._fbq || [];
+  window._fbq.push(['track', '6025690605546', {'value':'0.00','currency':'USD'}]);
+  </script>
+  <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025690605546&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+{% endif %}
+
+<!-- Facebook Conversion Code for Country Shore - All Visitors -->
+<script>(function() {
+  var _fbq = window._fbq || (window._fbq = []);
+  if (!_fbq.loaded) {
+    var fbds = document.createElement('script');
+    fbds.async = true;
+    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(fbds, s);
+    _fbq.loaded = true;
+  }
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', '6025690639946', {'value':'0.00','currency':'USD'}]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025690639946&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+
+
+
+<script>(function() {
+  var _fbq = window._fbq || (window._fbq = []);
+  if (!_fbq.loaded) {
+    var fbds = document.createElement('script');
+    fbds.async = true;
+    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(fbds, s);
+    _fbq.loaded = true;
+  }
+  _fbq.push(['addPixelId', '415632145245323']);
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', 'PixelInitialized', {}]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=415632145245323&amp;ev=PixelInitialized" /></noscript>
+
+
+
+
+
+
+
+{% if page.handle  == 'retailers' %}
+<!-- Facebook Conversion Code for Views from Retailers -->
+<script>(function() {
+  var _fbq = window._fbq || (window._fbq = []);
+  if (!_fbq.loaded) {
+    var fbds = document.createElement('script');
+    fbds.async = true;
+    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(fbds, s);
+    _fbq.loaded = true;
+  }
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', '6025749079746', {'value':'0.01','currency':'USD'}]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025749079746&amp;cd[value]=0.01&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+{% endif %}
