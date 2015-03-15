@@ -1,54 +1,3 @@
-<!--CUSTOM--> 
-{% assign color_string = "" %}
-{% assign color_position = 0 %}
-{% assign number_of_colors = 0 %}
-
-{% assign design_string = "" %}
-{% assign design_position = 0 %}
-{% assign number_of_designs = 0 %}
-
-{% assign style_string = "" %}
-{% assign style_position = 0 %}
-{% assign number_of_styles = 0 %}
-
-{% assign variant_titles = product.variants | map: 'title' %}
-
-{% for option in product.options %}
-    {% if option == "Color" %}
-        {% assign color_position = forloop.index %}
-    {% elsif option == "Design" %}
-        {% assign design_position = forloop.index %}
-    {% elsif option == "Style" %}
-        {% assign style_position = forloop.index %}
-    {% endif %}
-{% endfor %}
-
-{% for title in variant_titles %}
-    {% assign title_pieces = title | split: ' / ' %}
-    {% for piece in title_pieces %}
-        {% if forloop.index == color_position %}
-            {% unless color_string contains piece %}
-                {% assign color_string = color_string | append: ':' | append: piece %}
-            {% endunless %}
-        {% elsif forloop.index == design_position %}
-            {% unless design_string contains piece %}
-                {% assign design_string = design_string | append: ':' | append: piece %}
-            {% endunless %}
-        {% elsif forloop.index == style_position %}
-            {% unless style_string contains piece %}
-                {% assign style_string = style_string | append: ':' | append: piece %}
-            {% endunless %}
-        {% endif %}
-    {% endfor %}
-
-{% endfor %}
-
-{% assign number_of_colors = color_string | split: ':' | size | minus:1 %}
-{% assign number_of_designs = design_string | split: ':' | size | minus:1 %}
-{% assign number_of_styles = style_string | split: ':' | size | minus:1 %}
-<!--/CUSTOM-->
-
-
 {% if product-thumbnail %}
   <div class="{% if products_per_row == "2" %}six columns {% cycle 'alpha', 'omega' %}{% elsif products_per_row == "3" %}four columns {% cycle 'alpha', '', 'omega' %}{% else %}three columns {% cycle 'alpha', '', '', 'omega' %}{% endif %} thumbnail {% cycle 'even', 'odd' %}">
 {% else %}
@@ -79,28 +28,11 @@
           <span class="was_price">{{ product.compare_at_price_max | money }}</span>
         {% endif %}
       </span>
-      <!--CUSTOM-->
-      <div class="sale"><strong>
-        {% if number_of_colors > 1 or number_of_designs > 1 or number_of_styles > 1 %}  
-          {% if number_of_colors > 1 %}
-              {{ number_of_colors }} colors
-            
-            {% if number_of_designs > 1 or number_of_styles > 1 %} / {% endif %}
-          {% endif %}
-          {% if number_of_designs > 1 %}
-              {{ number_of_designs }} designs
-            
-            {% if number_of_styles > 1 %} / {% endif %}
-          {% endif %}
-          {% if number_of_styles > 1 %}
-              {{ number_of_styles }} styles
-          {% endif %}
-        
-        {% endif %}
-        
-        </strong></div>
+      
+      {% include 'custom-variants-notice' %}
+      
     </div>
-    <!--/CUSTOM-->
+
     {% if settings.sale_banner_enabled and product.compare_at_price_max > product.price %}
       <div class="sale_banner">Sale</div>
     {% endif %}

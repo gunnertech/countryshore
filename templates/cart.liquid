@@ -1,26 +1,4 @@
-  <!--/*CUSTOM*/-->
-  {% assign greater_than_3 = false %}
-  {% for item in cart.items %}
-    {% if item.variant.inventory_management == "shopify" and item.variant.inventory_quantity <= 0 %}
-      {% assign greater_than_3 = true %}
-    {% endif %}
-  {% endfor %}
-
-  <div class="sixteen columns clearfix collection_nav">
-    <div class="four columns alpha">
-      <h1 class="collection_title">Cart</h1>
-    </div>
-    <div class="six columns">
-	  <strong>Need Help? Email<br/><a href="mailto:orders@countryshoreoutfitters.com">orders@countryshoreoutfitters.com</a></strong>
-    </div>
-    <div class="six columns omega">
-      {% if greater_than_3 %}
-        <strong>Package expected to ship in 5-10 days</strong>
-      {% else %}
-        <strong>Package expected to ship in 2-4 days</strong>
-      {% endif %}
-    </div>
-  </div>
+  {% include 'custom-cart-header' %}
 
   <div class="sixteen columns">
     <div class="clearfix breadcrumb">
