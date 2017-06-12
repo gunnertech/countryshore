@@ -14,6 +14,7 @@
     {% endif %}
     
     {% include 'social-meta-info' %} 
+    {% include 'custom-domain-verification' %} 
 
     {% if collection.previous_product %}
       <link rel="prev" href="{{ collection.previous_product }}">
@@ -53,6 +54,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>window.jQuery || document.write("<script src='{{ "jquery.min.js" | asset_url }}'>\x3C/script>")</script>
     {{ 'app.js' | asset_url | script_tag }}
+    {{ 'custom.js' | asset_url | script_tag }}
     {% if settings.product_slideshow_animation == 'zoom' %}{{ "cloudzoom.js" | asset_url | script_tag }}{% endif %}
     {{ 'option_selection.js' | shopify_asset_url | script_tag }}        
     {{ content_for_header }}
@@ -422,27 +424,8 @@
 
     {% include 'newsletter-popup' %}
     {% include 'currencies' %}
-    {% include 'dynamic-remarketing' %}
+
     
-    <script type="text/javascript">
-    adroll_adv_id = "YO5AP6CSBFDAVKB3B7ZBQ2";
-    adroll_pix_id = "UCOPETSFOVFL7O74PSFO5H";
-    (function () {
-    var oldonload = window.onload;
-    window.onload = function(){
-       __adroll_loaded=true;
-       var scr = document.createElement("script");
-       var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
-       scr.setAttribute('async', 'true');
-       scr.type = "text/javascript";
-       scr.src = host + "/j/roundtrip.js";
-       ((document.getElementsByTagName('head') || [null])[0] ||
-        document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
-       if(oldonload){oldonload()}};
-    }());
-    </script>
-    
-  {% include 'adroll-pixel' %}
-  {% include 'modify_lightbox_snippet' %}
+   
 </body>
 </html>

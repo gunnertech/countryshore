@@ -1,25 +1,57 @@
-<!-- Pinterest tag code -->
-<img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/?tid=QgLwMWB3KNQ&amp;value={{ subtotal_price | money_without_currency }}&amp;quantity=1"/>
-<!-- /Pinterest tag code -->
-
-
-
-<!-- Twitter universal website tag code -->
+<!-- Facebook Pixel Code -->
 <script>
-!function(e,n,u,a){e.twq||(a=e.twq=function(){a.exe?a.exe.apply(a,arguments):
-a.queue.push(arguments);},a.version='1',a.queue=[],t=n.createElement(u),
-t.async=!0,t.src='//static.ads-twitter.com/uwt.js',s=n.getElementsByTagName(u)[0],
-s.parentNode.insertBefore(t,s))}(window,document,'script');
-// Insert Twitter Pixel ID and Standard Event data below
-twq('init','nv9wp');
-twq('track','PageView');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '415632145245323');
+fbq('track', "PageView");
+
+fbq('track', 'Purchase', {
+  content_ids: [{% for item in order.line_items %}'shopify_{{ item.product.id }}_{{ item.variant.id }}',{% endfor %}],
+  content_type: 'product',
+  value: {{ checkout.subtotal_price | money_without_currency }},
+  currency: 'USD'
+});
+
+
 </script>
-<!-- End Twitter universal website tag code -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=415632145245323&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
 
 
+{% assign chevron_dress_id = 370657021 %}
+{% assign item_in_cart = false %}
+{% for item in line_items %}
+  {{ item.product.id }}
+  {% if item.product.id == chevron_dress_id %}
+    {% assign item_in_cart = true %}
+  {% endif %}
+{% endfor %}
 
-
-
+{% if item_in_cart %}
+  <!-- Facebook Conversion Code for Country Shore - Chevron Dress - Checkouts -->
+  <script>(function() {
+    var _fbq = window._fbq || (window._fbq = []);
+    if (!_fbq.loaded) {
+      var fbds = document.createElement('script');
+      fbds.async = true;
+      fbds.src = '//connect.facebook.net/en_US/fbds.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(fbds, s);
+      _fbq.loaded = true;
+    }
+  })();
+  window._fbq = window._fbq || [];
+  window._fbq.push(['track', '6027788941346', {'value':'0.00','currency':'USD'}]);
+  </script>
+  <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6027788941346&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+{% endif %}  
+  
 <!-- Facebook Conversion Code for Country Shore - Checkouts -->
 <script>(function() {
   var _fbq = window._fbq || (window._fbq = []);
@@ -36,6 +68,7 @@ window._fbq = window._fbq || [];
 window._fbq.push(['track', '6025690314946', {'value':'{{ subtotal_price | money_without_currency }}','currency':'USD'}]);
 </script>
 <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025690314946&amp;cd[value]={{ subtotal_price | money_without_currency }}&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+
 
 <!-- Google Code for Country Shore Sales Conversion Page -->
 <script type="text/javascript">

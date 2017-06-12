@@ -1,0 +1,42 @@
+$(function() {
+  // $('.a_tag_filter').change(function() { window.location = $(this).find('option:selected').val(); });
+  
+  $('.a_tag_filter').change(function() {
+    var collection = $(this).find('option:selected').val().split('/')[2]
+    var tags = [];
+    
+    $('.a_tag_filter').each(function(){
+      var pieces = $(this).find('option:selected').val().split("/");
+      if (pieces[pieces.length-1] != "all" && pieces[pieces.length-1] != collection) {
+          tags.push(pieces[pieces.length-1]);
+      }
+      
+    })
+    
+    
+    window.location = '/collections/'+collection+'/'+tags.join(",")
+    
+    
+  });
+});
+
+jQuery(function(){
+      var promoCount = jQuery(".promo").length;
+      var currentPromo = Math.floor(Math.random()*promoCount)+1;
+      
+      jQuery(".promo").hide();
+      jQuery(".promo-"+currentPromo).show();
+      
+      setInterval(function(){
+        jQuery(".promo-"+currentPromo).hide();
+        
+        if(currentPromo == promoCount) {
+          currentPromo = 1;
+        } else {
+          currentPromo = currentPromo + 1;
+        }
+        
+        jQuery(".promo-"+currentPromo).show();
+      },4500)
+      
+    })

@@ -1,0 +1,837 @@
+{% assign style_number = "" %}
+{% assign is_dress = false %}
+
+{% for tag in product.tags %}
+  {% if tag contains 'meta-style-number-' %}
+    {% assign style_number = tag | remove: 'meta-style-number-' %}
+  {% endif %}
+  
+  {% if tag == 'Dress' %}
+    {% assign is_dress = true %}
+  {% endif %}
+{% endfor %}
+
+{% if style_number contains 'G5000' || style_number contains 'G2300' %}
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#sizingfit">Sizing/Fit</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+    </li>
+    <li id="features">
+      <ul>
+        <li>Preshrunk Jersey knit</li>
+        <li>Seamless double needle 7/8 collar</li>
+        <li>Taped neck and shoulders</li>
+        <li>Double needle sleeve and bottom hems</li>
+        <li>Quarter-turned to eliminate center crease</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <p><strong>This is a unisex-size shirt</strong></p>
+      <table>
+      <thead>
+      <tr><th>Size</th><th>Chest</th><th>Length</th><th>Sleeve Length</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>S</td>
+      <td>36</td>
+      <td>28</td>
+      <td>16.75</td>
+      </tr>
+      <tr>
+      <td>M</td>
+      <td>40</td>
+      <td>29</td>
+      <td>18.25</td>
+      </tr>
+      <tr>
+      <td>L</td>
+      <td>44</td>
+      <td>30</td>
+      <td>19.75</td>
+      </tr>
+      <tr>
+      <td>XL</td>
+      <td>48</td>
+      <td>31</td>
+      <td>21.25</td>
+      </tr>
+      <tr>
+      <td>2XL</td>
+      <td>52</td>
+      <td>32</td>
+      <td>22.75</td>
+      </tr>
+      <tr>
+      <td>3XL</td>
+      <td>56</td>
+      <td>33</td>
+      <td>24.25</td>
+      </tr>
+      </tbody>
+      </table>
+    </li>
+    <li id="care">
+      <p>Machine wash warm, inside out, with like colors. Only non-chlorine bleach. Tumble dry medium. Do not iron. Do not dry clean.</p>
+    </li>
+  </ul>
+  
+{% elsif style_number contains '5000L' %}
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+      <p>This is a ladies-fit shirt, so make sure you size accordingly!</p>
+    </li>
+    <li id="features">
+      <ul>
+        <li>preshrunk 100% cotton jersey</li>
+        <li>5.3-oz.</li>
+        <li>seamless double needle 1/2" collar</li>
+        <li>taped neck and shoulders</li>
+        <li>near cap sleeves</li>
+        <li>side-seamed with slightly tapered missy fit</li>
+        <li>double-needle sleeve and bottom hems</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <p><strong>This is a ladies-size shirt</strong></p>
+      <table>
+        <thead>
+          <tr><th>Size</th><th>Body Length</th><th>Chest</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>S</td>
+            <td>25.5</td>
+            <td>37</td>
+          </tr>
+      <tr>
+      <td>M</td>
+      <td>26</td>
+      <td>38.5</td>
+      </tr>
+      <tr>
+      <td>L</td>
+      <td>26.5</td>
+      <td>42.5</td>
+      </tr>
+      <tr>
+      <td>XL</td>
+      <td>27</td>
+      <td>46.5</td>
+      </tr>
+      <tr>
+      <td>2XL</td>
+      <td>27.5</td>
+      <td>50.5</td>
+      </tr>
+      <tr>
+      <td>3XL</td>
+      <td>28</td>
+      <td>54.5</td>
+      </tr>
+      </tbody>
+      </table>
+    </li>
+    <li id="care">
+      <p>Machine wash warm, inside out, with like colors. Only non-chlorine bleach. Tumble dry medium. Do not iron. Do not dry clean.</p>
+    </li>
+  </ul>
+{% elsif style_number contains 'G540L' %}  
+
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+      <p>This is a missy-fit shirt, so make sure you size accordingly!</p>
+    </li>
+    <li id="features">
+      <ul>
+        <li>100% preshrunk cotton</li>
+        <li>Seamless rib at neck</li>
+        <li>Seamless double-needle 1/2" collar</li>
+        <li>Taped neck</li>
+        <li>Taped shoulder-to-shoulder</li>
+        <li>Double-needle stitching throughout</li>
+        <li>Double-needle sleeve and bottom hem</li>
+        <li>Sideseams with slightly tapered Missy fit</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <table>
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Body Length</th>
+            <th>Body Width</th>
+            <th>Sleeve Length</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>S</td>
+            <td>25.5</td>
+            <td>17.25</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>26</td>
+            <td>19.25</td>
+            <td>30.5</td>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>27</td>
+            <td>21.25</td>
+            <td>31.5</td>
+          </tr>
+          <tr>
+            <td>XL</td>
+            <td>28</td>
+            <td>23.25</td>
+            <td>32.5</td>
+          </tr>
+          <tr>
+            <td>2XL</td>
+            <td>28.5</td>
+            <td>25.25</td>
+            <td>33.5</td>
+          </tr>
+          <tr>
+            <td>3XL</td>
+            <td>29</td>
+            <td>27.25</td>
+            <td>34.5</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li id="care">
+      <p>Machine wash warm, inside out, with like colors. Only non-chlorine bleach. Tumble dry medium. Do not iron. Do not dry clean.</p>
+    </li>
+  </ul>
+
+{% elsif style_number == 'G540' || style_number == 'G241' %}  
+
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+    </li>
+    <li id="features">
+      <ul>
+        <li>100% preshrunk cotton</li>
+        <li>Seamless rib at neck</li>
+        <li>Seamless double-needle 1/2" collar</li>
+        <li>Taped neck</li>
+        <li>Taped shoulder-to-shoulder</li>
+        <li>Double-needle stitching throughout</li>
+        <li>Ribbed cuffs</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <table>
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Body Width</th>
+            <th>Body Length</th>
+            <th>Sleeve Length</th>
+            <th>Waist Width</th>
+            <th>Width</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          <td>S</td>
+          <td>18</td>
+          <td>28</td>
+          <td>33.5</td>
+          <td>28</td>
+          <td>18</td>
+          </tr>
+
+          <tr>
+          <td>M</td>
+          <td>20</td>
+          <td>29</td>
+          <td>35</td>
+          <td>29</td>
+          <td>20</td>
+          </tr>
+
+          <tr>
+          <td>L</td>
+          <td>22</td>
+          <td>30</td>
+          <td>36.5</td>
+          <td>30</td>
+          <td>22</td>
+          </tr>
+
+          <tr>
+          <td>XL</td>
+          <td>24</td>
+          <td>31</td>
+          <td>38</td>
+          <td>31</td>
+          <td>24</td>
+          </tr>
+
+          <tr>
+          <td>2XL</td>
+          <td>26</td>
+          <td>32</td>
+          <td>39.5</td>
+          <td>32</td>
+          <td>26</td>
+          </tr>
+
+          <tr>
+          <td>3XL</td>
+          <td>28</td>
+          <td>33</td>
+          <td>39.5</td>
+          <td>33</td>
+          <td>28</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </li>
+    <li id="care">
+      <p>Machine wash warm, inside out, with like colors. Only non-chlorine bleach. Tumble dry medium. Do not iron. Do not dry clean.</p>
+    </li>
+  </ul>
+
+{% elsif style_number == '42000' %}  
+
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+    </li>
+    <li id="features">
+      <ul>
+        <li>4.5-ounce, 100% polyester</li>
+        <li>AquaFX™ moisture wicking</li>
+        <li>Freshcare™ anti-odor properties</li>
+        <li>Heat transfer label</li>
+        <li>Rib knit 3/4" non-topstitched collar</li>
+        <li>Double-needle sleeves and hem</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <table>
+      <thead>
+      <tr><th></th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th><th>3XL</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Chest</td>
+      <td>18</td>
+      <td>20</td>
+      <td>22</td>
+      <td>24</td>
+      <td>26</td>
+      <td>28</td>
+      </tr>
+      <tr>
+      <td>Body Length</td>
+      <td>28</td>
+      <td>29</td>
+      <td>30</td>
+      <td>31</td>
+      <td>32</td>
+      <td>33</td>
+      </tr>
+      <tr>
+      <td>Sleeve From Shoulder</td>
+      <td>16 1/4</td>
+      <td>17 3/4</td>
+      <td>19</td>
+      <td>20 1/4</td>
+      <td>21 1/2</td>
+      <td>22 3/4</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+      <td colspan="9">** We suggest ordering a size up if you're between sizes or want a looser fit **</td>
+      </tr>
+      </tfoot>
+      </table>
+    </li>
+    <li id="care">
+      <p>Machine wash cold with like colors, remove immediately, use only non-chlorine bleach when needed, do not use fabric softener. Tumble dry low. Cool iron if needed, exclusive of decoration, do not dry clean.</p>
+    </li>
+  </ul>
+  
+{% elsif style_number == '42400' %}
+
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+    </li>
+    <li id="features">
+      <ul>
+        <li>4.5-ounce, 100% polyester</li>
+        <li>AquaFX™ moisture wicking</li>
+        <li>Freshcare™ anti-odor properties</li>
+        <li>Heat transfer label</li>
+        <li>Rib knit 3/4" non-topstitched collar</li>
+        <li>Double-needle sleeves and hem</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <table>
+      <thead>
+      <tr><th></th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th><th>3XL</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Chest</td>
+      <td>18</td>
+      <td>20</td>
+      <td>22</td>
+      <td>24</td>
+      <td>26</td>
+      <td>28</td>
+      </tr>
+      <tr>
+      <td>Body Length</td>
+      <td>28</td>
+      <td>29</td>
+      <td>30</td>
+      <td>31</td>
+      <td>32</td>
+      <td>33</td>
+      </tr>
+      <tr>
+      <td>Sleeve From Shoulder</td>
+      <td>32.5</td>
+      <td>34.5</td>
+      <td>36</td>
+      <td>37.5</td>
+      <td>38.75</td>
+      <td>40.25</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+      <td colspan="9">** We suggest ordering a size up if you're between sizes or want a looser fit **</td>
+      </tr>
+      </tfoot>
+      </table>
+    </li>
+    <li id="care">
+      <p>Machine wash cold with like colors, remove immediately, use only non-chlorine bleach when needed, do not use fabric softener. Tumble dry low. Cool iron if needed, exclusive of decoration, do not dry clean.</p>
+    </li>
+  </ul>
+
+{% elsif style_number == 'ST350LS' %}
+
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+      <p>Like all of our Performance shirts, it's lightweight, moisture wicking and cool.</p>
+
+      <p>With UPF protection, you can enjoy being outdoors without getting roasted.</p>
+
+      <p>The odor resistance means you can wash this thing without worrying about stink getting locked in.</p>
+
+      <p><strong>This is a unisex-size shirt</strong></p>
+    </li>
+    <li id="features">
+      <ul>
+        <li>UPF 30</li>
+        <li>3.8-ounce, 100% cationic polyester</li>
+        <li>Removable tag for comfort and relabeling</li>
+        <li>Set-in sleeves</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <p><strong>This is a unisex-size shirt</strong></p>
+      <table>
+      <thead>
+      <tr><th></th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th><th>3XL</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Chest</td>
+      <td>18.5</td>
+      <td>20</td>
+      <td>21.5</td>
+      <td>23</td>
+      <td>24.5</td>
+      <td>26</td>
+      <td>28</td>
+      </tr>
+      <tr>
+      <td>Body Length</td>
+      <td>26</td>
+      <td>27</td>
+      <td>28</td>
+      <td>29</td>
+      <td>30</td>
+      <td>31</td>
+      <td>31.5</td>
+      </tr>
+      <tr>
+      <td>Sleeve Length</td>
+      <td>33.25</td>
+      <td>34</td>
+      <td>34.25</td>
+      <td>35.5</td>
+      <td>36.25</td>
+      <td>37</td>
+      <td>37.75</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+      <td colspan="9">** We suggest ordering a size up if you're between sizes or want a looser fit **</td>
+      </tr>
+      </tfoot>
+      </table>
+    </li>
+    <li id="care">
+      <p>Machine wash cold with like colors, non-chlorine bleach only if needed, do not use fabric softener, tumble dry low, remove promptly, cool iron if necessary, do not dry clean</p>
+    </li>
+  </ul>
+
+{% elsif style_number == 'X3247' %}
+
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+      <p>Like all of our Performance shirts, it's lightweight, moisture wicking and cool.</p>
+
+      <p>With UPF protection, you can enjoy being outdoors without getting roasted.</p>
+
+      <p>The odor resistance means you can wash this thing without worrying about stink getting locked in.</p>
+
+      <p><strong>This is a unisex-size shirt</strong></p>
+    </li>
+    <li id="features">
+      <ul>
+        <li>100% Microdenier Polyester with moisture wicking, anti-microbial and UPF 30+</li> 
+        <li>Loose fit with long sleeves</li>
+        <li>Disperses and wicks moisture away from the body for quicker evaporation</li>
+        <li>True Timber Camo</li>
+        <li>Self fabric collar</li>
+        <li>Tagless label for comfort</li>
+        <li>Two needle hemmed sleeve opening and tail</li>
+      </ul>
+    </li>
+    <li id="care">
+      <p>Machine wash cold with like colors, non-chlorine bleach only if needed, do not use fabric softener, tumble dry low, remove promptly, cool iron if necessary, do not dry clean</p>
+    </li>
+  </ul>
+
+{% elsif style_number == '4184' %}
+
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+      <p>Like all of our Performance shirts, it's lightweight, moisture wicking and cool.</p>
+
+      <p>With UPF protection, you can enjoy being outdoors without getting roasted.</p>
+
+      <p>The odor resistance means you can wash this thing without worrying about stink getting locked in.</p>
+    </li>
+    <li id="features">
+      <ul>
+        <li>100% Sublimated polyester moisture management/antimicrobial performance fabric</li>
+        <li>Sport shoulder for maximum movement</li>
+        <li>Self-fabric collar - Double-needle hem</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <table>
+      <thead>
+      <tr><th></th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th><th>3XL</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Body Width</td>
+      <td>17</td>
+      <td>19</td>
+      <td>21</td>
+      <td>23</td>
+      <td>25</td>
+      <td>27</td>
+      <td>29</td>
+      </tr>
+      <tr>
+      <td>Body Length</td>
+      <td>28.5</td>
+      <td>29.5</td>
+      <td>30.5</td>
+      <td>31.5</td>
+      <td>32.5</td>
+      <td>33.5</td>
+      <td>34.5</td>
+      </tr>
+      </tbody>
+    </table>
+    </li>
+    <li id="care">
+      <p>Machine wash cold with like colors, non-chlorine bleach only if needed, do not use fabric softener, tumble dry low, remove promptly, cool iron if necessary, do not dry clean</p>
+    </li>
+  </ul>
+  
+{% elsif style_number == 'LST353LS' %}
+
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+      <p>Like all of our Performance shirts, it's lightweight, moisture wicking and cool.</p>
+
+      <p>With UPF protection, you can enjoy being outdoors without getting roasted.</p>
+
+      <p>The odor resistance means you can wash this thing without worrying about stink getting locked in.</p>
+
+      <p><strong>This is a ladies-size shirt</strong></p>
+    </li>
+    <li id="features">
+      <ul>
+        <li>3.8-ounce, 100% cationic polyester interlock</li>
+        <li>Gently contoured silhouette</li>
+        <li>Self-fabric v-neck</li>
+        <li>Set-in sleeves</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <p><strong>This is a ladies-size shirt</strong></p>
+      <table>
+      <thead>
+      <tr><th></th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th><th>3XL</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Size</td>
+      <td>2</td>
+      <td>4/6</td>
+      <td>8/10</td>
+      <td>12/14</td>
+      <td>16/18</td>
+      <td>20/22</td>
+      <td>24/26</td>
+      </tr>
+      <tr>
+      <td>Bust</td>
+      <td>17.75</td>
+      <td>18.75</td>
+      <td>19.75</td>
+      <td>21.25</td>
+      <td>22.75</td>
+      <td>24.25</td>
+      <td>26.25</td>
+      </tr>
+      <tr>
+      <td>Sleeve Length</td>
+      <td>31</td>
+      <td>31.5</td>
+      <td>32</td>
+      <td>32.5</td>
+      <td>33</td>
+      <td>33.5</td>
+      <td>34</td>
+      </tr>
+      <tr>
+      <td>Body Length</td>
+      <td>25</td>
+      <td>25.5</td>
+      <td>26</td>
+      <td>27</td>
+      <td>28</td>
+      <td>29</td>
+      <td>29.5</td>
+      </tr>
+      </tbody>
+    </table>
+    </li>
+    <li id="care">
+      <p>Machine wash cold with like colors, non-chlorine bleach only if needed, do not use fabric softener, tumble dry low, remove promptly, cool iron if necessary, do not dry clean</p>
+    </li>
+  </ul>
+  
+{% elsif style_number == 'N6533' %}
+
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Info</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+    <li><a href="#care">Care</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+      
+      <p>This women's burnout racerback tank top not only is very stylish, but is also very comfortable and soft thanks to its fabric's 30 Singles thread rating.</p>
+      <p>If you need to look good and still feel maximum comfort in a women's tank top, stop right there with the this burnout racerback tank top.</p>
+    </li>
+    <li id="features">
+      <ul>
+        <li>preshrunk 65% polyester/35% cotton</li>
+        <li>3.7-oz.</li>
+        <li>30 singles for extreme softness</li>
+        <li>1x1 burnout baby rib-knit binding</li>
+        <li>satin label</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <table>
+      <thead>
+      <tr><th></th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Chest</td>
+      <td>29</td>
+      <td>31</td>
+      <td>33</td>
+      <td>36</td>
+      <td>39</td>
+    </tr>
+      <tr>
+      <td>Body Length</td>
+      <td>26.5</td>
+      <td>27</td>
+      <td>27.5</td>
+      <td>28</td>
+      <td>29</td>
+    </tr>
+      <tr>
+      <td>Shoulder Straps</td>
+      <td>7/8</td>
+      <td>1</td>
+      <td>1 1/8</td>
+      <td>1 1/4</td>
+      <td>1 1/2</td>
+      </tr>
+      </tbody>
+    </table>
+    </li>
+    <li id="care">
+      <p>Machine wash cold. Do not bleach. Tumble dry low.</p>
+    </li>
+  </ul>
+{% elsif is_dress == true %}
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#sizingfit">Sizing</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+      
+    </li>
+    <li id="sizingfit">
+      <table>
+        <caption>Sizes and measurements are approximations</caption>
+        <thead>  
+          <tr>
+            <th></th>
+            <th>XS</th>  
+            <th>S</th>
+            <th>M</th>
+            <th>L</th>
+            <th>XL</th>
+            <th>XXL</th> 
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr>
+            <td>Size</td>
+            <td>0-2</td>	<td>4-6</td>	<td>8-10</td>	<td>12-14</td>	<td>16-18</td>	<td>20-</td>
+          </tr>
+          <tr>
+            <td>Bust</td>
+            <td>31.5" - 33"</td><td>33.5" - 35"</td><td>35.5" - 37"</td><td>37.5" - 40"</td><td>40.5" - 43.5"</td><td>44" - 45.5"</td>
+          </tr>
+          <tr>
+            <td>Waist</td>
+            <td>23.25" - 25"</td><td>25.5" - 27"</td><td>27.5" - 29"</td><td>29.5" - 32.5"</td><td>33" - 36.5"</td><td>37" - 38"</td>
+          </tr>
+          <tr>
+            <td>Hips</td>
+            <td>33.25" - 35"</td><td>35.5" - 37"</td><td>37.5" - 40"</td><td>40.5" - 42.5"</td><td>43" - 46.5"</td><td>47" - 48"</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+{% else %}
+  {{ product.description | split: '<!-- split -->' | first }}
+{% endif %}
+<p>We are dedicated to making high-quality products that will last and are affordable for anyone who loves the outdoors lifestyle.</p>
+
+<p>Because of this, we guarantee the quality of our products and will do everything reasonable to offer the best prices on the market.</p>
+
+<p>If you are not completely happy with your purchase, for any reason, contact us within 30 days and we'll send you a return label free of charge.</p>
+
+<p>Once we get your item, we'll either exchange it for something else or refund you the full amount of the item - your choice.</p>
+
+<p>If you think a price is unreasonable, please let us know! Send us a link to a competitor's product and we'll try to match the price.</p>
+
+<p><a href="http://countryshoreoutfitters.com/pages/the-country-shore-promise">Read more about the Country Shore Promise.</a></p>

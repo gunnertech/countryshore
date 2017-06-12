@@ -1,0 +1,68 @@
+{% if style_number contains 'G5000' %}
+  <ul class="tabs">
+    <li><a class="active" href="#description">Description</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#sizingfit">Sizing/Fit</a></li>
+  </ul>
+  <ul class="tabs-content">
+    <li class="active" id="description">
+      {{ product.description | split: '<!-- split -->' | first }}
+    </li>
+    <li id="features">
+      <ul>
+        <li>Preshrunk Jersey knit</li>
+        <li>Seamless double needle 7/8 collar</li>
+        <li>Taped neck and shoulders</li>
+        <li>Double needle sleeve and bottom hems</li>
+        <li>Quarter-turned to eliminate center crease</li>
+      </ul>
+    </li>
+    <li id="sizingfit">
+      <table>
+      <thead>
+      <tr><th>Size</th><th>Chest</th><th>Length</th><th>Sleeve Length</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>S</td>
+      <td>36</td>
+      <td>28</td>
+      <td>16 3/4</td>
+      </tr>
+      <tr>
+      <td>M</td>
+      <td>40</td>
+      <td>29</td>
+      <td>18 1/4</td>
+      </tr>
+      <tr>
+      <td>L</td>
+      <td>44</td>
+      <td>30</td>
+      <td>19 3/4</td>
+      </tr>
+      <tr>
+      <td>XL</td>
+      <td>48</td>
+      <td>31</td>
+      <td>21 1/4</td>
+      </tr>
+      <tr>
+      <td>2XL</td>
+      <td>52</td>
+      <td>32</td>
+      <td>22 3/4</td>
+      </tr>
+      <tr>
+      <td>3XL</td>
+      <td>56</td>
+      <td>33</td>
+      <td>24 1/4</td>
+      </tr>
+      </tbody>
+      </table>
+    </li>
+  </ul>
+{% else %}
+  {{ product.description | split: '<!-- split -->' | first }}
+{% endif %}

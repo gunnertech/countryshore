@@ -1,4 +1,11 @@
-{% if product.available %}
+{% if product.tags contains 'Unavailable' %}
+  {% assign unavailable = true %}
+{% else %}
+  {% assign unavailable = false %}
+{% endif %}
+
+
+{% if product.available and unavailable != true %}
   <div class="shipping-notification">
     
   </div>

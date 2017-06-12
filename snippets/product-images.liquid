@@ -4,31 +4,33 @@
   <div id="product_slider" class="flexslider">
     <ul class="slides">
       {% for image in product.images %}
-        <li data-thumb="{{ image | product_img_url: 'large' }}" data-title="{% if image.alt contains 'youtube' or image.alt contains 'vimeo' %}{{ product.title }}{% else %}{{ image.alt | escape }}{% endif %}">
-          {% if image.alt contains 'youtube' or image.alt contains 'vimeo' %}
-            {% assign src = image.alt | split: 'src="' %}
-            {% assign src = src[1] | split: '"' | first %}
+        {% unless image.src contains 'amazon' %}
+          <li data-thumb="{{ image | product_img_url: 'large' }}" data-title="{% if image.alt contains 'youtube' or image.alt contains 'vimeo' %}{{ product.title }}{% else %}{{ image.alt | escape }}{% endif %}">
+            {% if image.alt contains 'youtube' or image.alt contains 'vimeo' %}
+              {% assign src = image.alt | split: 'src="' %}
+              {% assign src = src[1] | split: '"' | first %}
 
-            {% if src contains '?' %}
-              {% assign src = src | append: '&amp;autoplay=1' %}
+              {% if src contains '?' %}
+                {% assign src = src | append: '&amp;autoplay=1' %}
+              {% else %}
+                {% assign src = src | append: '?autoplay=1' %}
+              {% endif %}
+
+              <div class="video-container">
+                <a href="{{ src }}" class="fancybox fancybox.iframe" rel="group" title="{{ product.title | escape }}">
+                  {{ image.alt }}
+                </a>
+              </div>
             {% else %}
-              {% assign src = src | append: '?autoplay=1' %}
-            {% endif %}
-
-            <div class="video-container">
-              <a href="{{ src }}" class="fancybox fancybox.iframe" rel="group" title="{{ product.title | escape }}">
-                {{ image.alt }}
+              <a href="{{ image | product_img_url: 'master' }}" class="fancybox" rel="group" title="{{ image.alt | escape }}">
+                <img src="{{ image | product_img_url: 'large' }}" alt="{{ image.alt | escape }}" {% if featured_image.id == image.id %}id="featured_image"{% endif %} data-index="{{ forloop.index0 }}" data-image-id="{{ image.id }}" itemprop="image" data-cloudzoom="zoomImage: '{{ image | product_img_url: 'master' }}', tintColor: '{{ settings.shop_bg_color }}', hoverIntentDelay: 100, autoInside: 767, touchStartDelay: 250" class="cloudzoom" />
               </a>
-            </div>
-          {% else %}
-            <a href="{{ image | product_img_url: 'master' }}" class="fancybox" rel="group" title="{{ image.alt | escape }}">
-              <img src="{{ image | product_img_url: 'large' }}" alt="{{ image.alt | escape }}" {% if featured_image.id == image.id %}id="featured_image"{% endif %} data-index="{{ forloop.index0 }}" data-image-id="{{ image.id }}" itemprop="image" data-cloudzoom="zoomImage: '{{ image | product_img_url: 'master' }}', tintColor: '{{ settings.shop_bg_color }}', hoverIntentDelay: 100, autoInside: 767, touchStartDelay: 250" class="cloudzoom" />
-            </a>
-          	{% if image.alt and image.alt != "" %}
-          	  <p class="flexslider-caption">{{image.alt}}</p>
-          	{% endif %}
-          {% endif %}
-        </li>
+            	{% if image.alt and image.alt != "" %}
+            	  <p class="flexslider-caption">{{image.alt}}</p>
+            	{% endif %}
+            {% endif %}
+          </li>
+        {% endunless %}
       {% endfor %}
     </ul>
   </div>

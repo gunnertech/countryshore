@@ -57,6 +57,7 @@
        <hr />
      
        <div class="meta">
+         <h3>Find Similar Items</h3>
          {% if settings.display_collections %}
            <p>
              <span class="label">Collections:</span> 
@@ -75,7 +76,7 @@
                   <span class="label">Category:</span> 
                 {% endif %}
 
-                {% unless tag contains 'meta-related-collection-' %}
+                {% unless tag contains 'meta-' %}
                   <span>
                       <a href="/collections/{% if collection %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handle }}" title="Products tagged {{ tag | escape}}">{{ tag }}</a>
                   </span>

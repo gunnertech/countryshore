@@ -11,7 +11,7 @@
             <a href="{% if collection.handle == "all" %}/collections/all{% elsif collection.handle %}{{ collection.url }}{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}{{ collection.title | url_for_type }}{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}{{ collection.title | url_for_vendor }}{% endif %}">{% if current_tags %}View All{% else %}<span class="active">View All</span>{% endif %}</a>
           </li>
           {% for tag in collection.all_tags %}
-            {% unless tag contains 'meta-related-collection-' %}
+            {% unless tag contains 'meta-' %}
               <li>
                 {{ tag | highlight_active_tag | link_to_tag: tag }}
               </li>
@@ -28,7 +28,7 @@
         <select name="tag_filter" id="tag_filter">
           <option {% unless current_tags %}selected="selected"{% endunless %} value="{% if collection.handle == "all" %}/collections/all{% elsif collection.handle %}{{ collection.url }}{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}{{ collection.title | url_for_type }}{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}{{ collection.title | url_for_vendor }}{% endif %}">View All</option>
           {% for tag in collection.all_tags %}
-            {% unless tag contains 'meta-related-collection-' %}
+            {% unless tag contains 'meta-' %}
               <option {% if current_tags contains tag %}selected="selected"{% endif %} value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}">{{ tag }}</option>
             {% endunless %}
           {% endfor %}

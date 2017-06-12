@@ -36,6 +36,7 @@
          <meta itemprop="seller" content="{{ shop.name | escape }}" />
          <meta itemprop="availability" content="{% if product.available %}in_stock{% else %}out_of_stock{% endif %}" />
          
+         
          <span class="sold_out">{% if variant.available == false %}{{ settings.sold_out_text }}{% endif %}</span>
          <span itemprop="price" content="{{ variant.price | money_without_currency }}" class="{% if variant.compare_at_price > variant.price %}sale{% endif %}">
             <span class="current_price">
@@ -56,7 +57,7 @@
        {% if settings.product_description_position == "top" %}
          {% if product.description != blank %}
           <div class="description" itemprop="description">
-            {{ product.description | split: '<!-- split -->' | first }}
+            {% include "custom-description" %}
           </div>
          {% endif %}
          {% if product.available %}<hr />{% endif %}
@@ -68,7 +69,7 @@
         {% if product.available %}<hr />{% endif %}
         {% if product.description != blank %}
          <div class="description" itemprop="description">
-           {{ product.description | split: '<!-- split -->' | first }}
+           {% include "custom-description" %}
          </div>
         {% endif %}
        {% endif %}
@@ -76,6 +77,7 @@
        <hr />
      
        <div class="meta">
+         <h3>Find Similar Items</h3>
          {% if settings.display_collections %}
            <p>
              <span class="label">Collections:</span> 
@@ -94,7 +96,7 @@
                   <span class="label">Category:</span> 
                 {% endif %}
 
-                {% unless tag contains 'meta-related-collection-' %}
+                {% unless tag contains 'meta-' %}
                   <span>
                       <a href="/collections/{% if collection %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handle }}" title="Products tagged {{ tag | escape}}">{{ tag }}</a>{% unless forloop.last %},{% endunless %} 
                   </span>

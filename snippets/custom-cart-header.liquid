@@ -1,6 +1,10 @@
 {% assign greater_than_3 = false %}
 {% for item in cart.items %}
-  {% if item.variant.inventory_management == "shopify" and item.variant.inventory_quantity <= 0 %}
+
+  {% unless item.variant.inventory_management %}
+    {% assign greater_than_3 = true %}
+  {% endunless %}
+  {% if (item.variant.inventory_management == "shopify" and item.variant.inventory_quantity <= 0) %}
     {% assign greater_than_3 = true %}
   {% endif %}
 {% endfor %}
@@ -10,7 +14,7 @@
     <h1 class="collection_title">Cart</h1>
   </div>
   <div class="six columns">
-    <strong>Need Help? Email<br/><a href="mailto:orders@countryshoreoutfitters.com">orders@countryshoreoutfitters.com</a></strong>
+    <strong>Need Help Checking Out?<br/><a href="/pages/shipping-returns-and-ordering">Click Here</a></strong>
   </div>
   <div class="six columns omega">
     {% if greater_than_3 %}

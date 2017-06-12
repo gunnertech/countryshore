@@ -2,7 +2,7 @@
 {% assign tag_threshold = settings.tag_threshold | minus: 0 %}
 
 <div class="sixteen columns clearfix collection_nav">
-  <div class="{% if settings.collection_sort and (settings.collection_tags and tag_count < tag_threshold) %}thirteen{% elsif settings.collection_sort or settings.collection_tags %}ten{% else %}sixteen{% endif %} columns alpha">
+  <div class="{% if settings.collection_sort and (settings.collection_tags and tag_count < tag_threshold) %}thirteen{% elsif settings.collection_sort or settings.collection_tags %}sixteen{% else %}sixteen{% endif %} columns alpha">
     <h1 class="collection_title {% if settings.collection_tags and tag_count < tag_threshold %}collection_title_tags{% endif %}"><a href="{% if collection.handle == "all" %}/collections/all{% else %}{{ collection.url }}{% endif %}" title="{{ collection.title | escape }}">{{ collection.title }}</a></h1>
     {% if settings.collection_tags %}
       {% if tag_count < tag_threshold %}
@@ -11,7 +11,7 @@
             <a href="{% if collection.handle == "all" %}/collections/all{% elsif collection.handle %}{{ collection.url }}{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}{{ collection.title | url_for_type }}{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}{{ collection.title | url_for_vendor }}{% endif %}">{% if current_tags %}View All{% else %}<span class="active">View All</span>{% endif %}</a>
           </li>
           {% for tag in collection.all_tags %}
-            {% unless tag contains 'meta-related-collection-' %}
+            {% unless tag contains 'meta-' %}
               <li>
                 {{ tag | highlight_active_tag | link_to_tag: tag }}
               </li>
@@ -23,13 +23,39 @@
 
   </div>
 
-  {% if collection.handle != blank and collection.products_count > 0 %}
+  {% if collection.handle != blank %}
     {% if settings.collection_tags %}
+      <div class="three alpha columns">
+        <h4>Filter Results</h4>
+      </div>
+      
       <div class="three columns section_select tag_filter {% unless settings.collection_sort %}offset-by-three omega{% endunless %}" {% if tag_count >= tag_threshold %}style="display:block"{% endif %}>
-        <select name="tag_filter" id="tag_filter">
-          <option {% unless current_tags %}selected="selected"{% endunless %} value="{% if collection.handle == "all" %}/collections/all{% elsif collection.handle %}{{ collection.url }}{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}{{ collection.title | url_for_type }}{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}{{ collection.title | url_for_vendor }}{% endif %}">View All</option>
+        <select name="tag_filter" class="a_tag_filter">
+          <option {% unless current_tags %}selected="selected"{% endunless %} value="{% if collection.handle == "all" %}/collections/all{% elsif collection.handle %}{{ collection.url }}{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}{{ collection.title | url_for_type }}{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}{{ collection.title | url_for_vendor }}{% endif %}">All Colors</option>
           {% for tag in collection.all_tags %}
-            {% unless tag contains 'meta-related-collection-' %}
+            {% if tag contains 'Color:' %}
+              <option {% if current_tags contains tag %}selected="selected"{% endif %} value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}">{{ tag | remove: 'Color: ' }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      
+      <div class="three columns section_select tag_filter {% unless settings.collection_sort %}offset-by-three omega{% endunless %}" {% if tag_count >= tag_threshold %}style="display:block"{% endif %}>
+        <select name="tag_filter" class="a_tag_filter">
+          <option {% unless current_tags %}selected="selected"{% endunless %} value="{% if collection.handle == "all" %}/collections/all{% elsif collection.handle %}{{ collection.url }}{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}{{ collection.title | url_for_type }}{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}{{ collection.title | url_for_vendor }}{% endif %}">All Designs</option>
+          {% for tag in collection.all_tags %}
+            {% if tag contains 'Design:' %}
+              <option {% if current_tags contains tag %}selected="selected"{% endif %} value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}">{{ tag | remove: 'Design: ' }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+        
+      <div class="three columns section_select tag_filter {% unless settings.collection_sort %}offset-by-three omega{% endunless %}" {% if tag_count >= tag_threshold %}style="display:block"{% endif %}>
+        <select name="tag_filter" class="a_tag_filter">
+          <option {% unless current_tags %}selected="selected"{% endunless %} value="{% if collection.handle == "all" %}/collections/all{% elsif collection.handle %}{{ collection.url }}{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}{{ collection.title | url_for_type }}{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}{{ collection.title | url_for_vendor }}{% endif %}">All Tags</option>
+          {% for tag in collection.all_tags %}
+            {% unless tag contains 'meta-' or tag contains 'Color:' or tag contains 'Design:' %}
               <option {% if current_tags contains tag %}selected="selected"{% endif %} value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}">{{ tag }}</option>
             {% endunless %}
           {% endfor %}
@@ -66,13 +92,13 @@
 
 </div>
 
-{% if collection.description != blank %}
-  <div class="sixteen columns">
-    <div class="section clearfix">    
-      {{ collection.description }}
-    </div>
+
+<div class="sixteen columns">
+  <div class="section clearfix">    
+    {{ collection.description }}
+    <p><strong>Need help finding something? <a href="https://www.facebook.com/video.php?v=614700541996190&amp;set=vb.443773779088868&amp;type=2&amp;theater" target="_blank">Watch this brief video for help.</a></strong></p>
   </div>
-{% endif %}
+</div>
 
 {% if settings.collection_sidebar %}
   {% include 'collection-sidebar' %}

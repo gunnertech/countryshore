@@ -1,0 +1,49 @@
+Create New Product
+Create "Key Page View" Conversion Pixel
+Add pixel to code base
+Create "Adds to cart" Conversion Pixel
+Add pixel to code base
+Create "Checkouts" Conversion Pixel
+Add pixel to site settings
+
+Create a campaign to "Send people to your website"
+- People connected to country shore
+- Set conversion pixel to be "key page view" from above
+- run for one week
+
+Create Custom Audience using url
+
+Create campaign to "Increase conversions on your website"
+- Set audience to be the audience created in previous step
+- Set start date to be the day the previous campaign ends.
+- Set conversion pixel to be "Checkouts" converion pixel from above
+- run for one week
+
+When that campaign ends, create a 1% look alike audience from "Checkouts" converion pixel
+
+Extend the above "Increase conversions on your website" campaign using the 1% look alike for another week
+
+
+
+
+
+
+Newsletter
+
+- Once a Week
+- Announcments
+-- Free T-Shirt winner
+-- May Event Schedule
+- Next Event
+- Exclusive Newsletter deal
+-- Chevron Dress
+- Photo of the week
+- Current Online deals & Sales
+-- Man Crush Monday
+-- Transformation Tuesday
+-- Woman Crush Wednesday
+-- Throwback Thursday
+-- Flashback Friday
+- Weekly Contest
+- Weekly blog post
+- New Release

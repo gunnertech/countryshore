@@ -36,25 +36,25 @@ var google_tag_params = {
   ecomm_totalvalue:"{{ product.price | money_without_currency }}"
 };
 
-function _customTrack() {
-  if(window.ShopifyAnalytics.lib && window.ShopifyAnalytics.lib.track) {
-    window.ShopifyAnalytics.lib.track(
-      "Viewed Product Details",
-      {
-        "id":'{{ product.metafields.google.gmc_id | split: ',' | last }}',
-        "name":"{{ product.title }}",
-        "price":"{{ product.price | money_without_currency }}",
-        "currency":"USD",
-        "nonInteraction":true
-      }
-    );
+// function _customTrack() {
+//   if(window.ShopifyAnalytics.lib && window.ShopifyAnalytics.lib.track) {
+//     window.ShopifyAnalytics.lib.track(
+//       "Viewed Product Details",
+//       {
+//         "id":'{{ product.metafields.google.gmc_id | split: ',' | last }}',
+//         "name":"{{ product.title }}",
+//         "price":"{{ product.price | money_without_currency }}",
+//         "currency":"USD",
+//         "nonInteraction":true
+//       }
+//     );
     
-  } else {
-    setTimeout(function(){ _customTrack(); },1000)
-  }
-}
+//   } else {
+//     setTimeout(function(){ _customTrack(); },1000)
+//   }
+// }
 
-_customTrack()
+// _customTrack()
 
 
 </script>
@@ -111,111 +111,3 @@ window.google_remarketing_only = true;
 </div>
 </noscript>
 
-
-
-
-
-
-
-{% if template == "cart" %}
-  <!-- Facebook Conversion Code for Country Shore - Adds to Cart -->
-  <script>(function() {
-    var _fbq = window._fbq || (window._fbq = []);
-    if (!_fbq.loaded) {
-      var fbds = document.createElement('script');
-      fbds.async = true;
-      fbds.src = '//connect.facebook.net/en_US/fbds.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(fbds, s);
-      _fbq.loaded = true;
-    }
-  })();
-  window._fbq = window._fbq || [];
-  window._fbq.push(['track', '6025690605546', {'value':'0.00','currency':'USD'}]);
-  </script>
-  <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025690605546&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
-{% endif %}
-
-<!-- Facebook Conversion Code for Country Shore - All Visitors -->
-<script>(function() {
-  var _fbq = window._fbq || (window._fbq = []);
-  if (!_fbq.loaded) {
-    var fbds = document.createElement('script');
-    fbds.async = true;
-    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(fbds, s);
-    _fbq.loaded = true;
-  }
-})();
-window._fbq = window._fbq || [];
-window._fbq.push(['track', '6025690639946', {'value':'0.00','currency':'USD'}]);
-</script>
-<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025690639946&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
-
-
-
-<script>(function() {
-  var _fbq = window._fbq || (window._fbq = []);
-  if (!_fbq.loaded) {
-    var fbds = document.createElement('script');
-    fbds.async = true;
-    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(fbds, s);
-    _fbq.loaded = true;
-  }
-  _fbq.push(['addPixelId', '415632145245323']);
-})();
-window._fbq = window._fbq || [];
-window._fbq.push(['track', 'PixelInitialized', {}]);
-</script>
-<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=415632145245323&amp;ev=PixelInitialized" /></noscript>
-
-
-
-
-
-
-
-{% if page.handle  == 'retailers' %}
-<!-- Facebook Conversion Code for Views from Retailers -->
-<script>(function() {
-  var _fbq = window._fbq || (window._fbq = []);
-  if (!_fbq.loaded) {
-    var fbds = document.createElement('script');
-    fbds.async = true;
-    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(fbds, s);
-    _fbq.loaded = true;
-  }
-})();
-window._fbq = window._fbq || [];
-window._fbq.push(['track', '6025749079746', {'value':'0.01','currency':'USD'}]);
-</script>
-<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6025749079746&amp;cd[value]=0.01&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
-{% endif %}
-
-
-
-
-
-<!-- ADD ROLL -->
-<script type="text/javascript">
-adroll_adv_id = "YO5AP6CSBFDAVKB3B7ZBQ2";
-adroll_pix_id = "UCOPETSFOVFL7O74PSFO5H";
-(function () {
-var oldonload = window.onload;
-window.onload = function(){
-   __adroll_loaded=true;
-   var scr = document.createElement("script");
-   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
-   scr.setAttribute('async', 'true');
-   scr.type = "text/javascript";
-   scr.src = host + "/j/roundtrip.js";
-   ((document.getElementsByTagName('head') || [null])[0] ||
-    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
-   if(oldonload){oldonload()}};
-}());
-</script>
